@@ -1,0 +1,43 @@
+---
+title: "Setup check: Quarto to PDF"
+author: "Pagiel Cecil Ashers"
+date: today
+format: pdf
+---
+
+## Purpose
+
+This report confirms my reproducible-reporting workflow (R, Quarto, Git, GitHub) works end to end.
+
+## Data
+
+Real, published public data: H7N9 influenza cases in China, 2013 (`fluH7N9_china_2013`, from the R package `outbreaks`).
+
+```{r}
+#| echo: false
+#| warning: false
+library(tidyverse)
+library(outbreaks)
+d <- fluH7N9_china_2013
+```
+
+## Cases by province (top 5)
+
+```{r}
+#| echo: false
+d |> count(province, sort = TRUE) |> head(5) |> knitr::kable()
+```
+
+## Epidemic curve (weekly, by onset date)
+
+```{r}
+#| echo: false
+#| warning: false
+ggplot(d, aes(date_of_onset)) +
+  geom_histogram(binwidth = 7) +
+  labs(x = "Onset date", y = "Cases per week")
+```
+
+## Interpretation
+
+The epidemic curve illustrates the weekly progression of the H7N9 outbreak in China, showing a rapid initial surge in cases followed by a gradual decline. Cases peaked in early 2013, specifically around late March to early April, indicating the period of highest transmission risk. However, a key limitation of this curve is the potential for missing or delayed onset dates, which can distort the true shape of the epidemic and make it difficult to accurately pinpoint the exact timing of the peak or calculate transmission rate
