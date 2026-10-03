@@ -27,3 +27,14 @@ curve and make the exact timing of the peak harder to pin down.
 ## Files
 - `report/setup_check.qmd`: report source
 - `report/setup_check.pdf`: rendered report
+
+
+
+
+
+
+
+
+
+
+
